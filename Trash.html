@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <div class="title-bar">
+            <div class="title-bar-text">Files</div>
+            <div class="title-bar-text">Edit</div>
+            <div class="title-bar-text">View</div>
+            <div class="title-bar-text">Help</div>
+            <div class="title-bar-controls">
+              <button aria-label="Close"></button>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://unpkg.com/xp.css">
+        <link rel="stylesheet" href="styles2.css">
+        <script src="https://kit.fontawesome.com/46af404c4f.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="xp">
+        <header class="xp-window">
+        </header>
+
+
+        <div class="folders xp-window-content">
+            <ul>
+                <li class="xp-btn folder-item" draggable="true" id="folder1">
+                    <i class="fa-solid fa-folder"></i>
+                    <p>Documents</p>
+                </li>
+                <li class="xp-btn folder-item" draggable="true" id="folder2">
+                    <i class="fa-solid fa-folder"></i>
+                    <p>Photos</p>
+                </li>
+                <li class="xp-btn folder-item" draggable="true" id="folder3">
+                    <i class="fa-solid fa-folder"></i>
+                    <p>Downloads</p>
+                </li>
+                <li class="xp-btn folder-item" draggable="true" id="folder4">
+                    <i class="fa-solid fa-folder"></i>
+                    <p>Music</p>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- Add an id to the recycle bin icon for it to work -->
+        <i class="fa-solid fa-dumpster" id="recycleBin"></i>
+
+
+        <script>
+            const folders = document.querySelectorAll('.folder-item');
+            const recycleBin = document.getElementById('recycleBin');
+
+
+            folders.forEach(folder => {
+                folder.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text', e.target.id);  // Set the ID of the dragged folder
+                    folder.style.opacity = '0.5';  // Make folder semi-transparent
+                });
+
+
+                folder.addEventListener('dragend', () => {
+                    folder.style.opacity = '1';  // Reset folder opacity after drag ends
+                });
+            });
+
+
+            // Allow the recycle bin to accept the dragged folder
+            recycleBin.addEventListener('dragover', (e) => {
+                e.preventDefault();  // Allow drop by preventing default behavior
+                recycleBin.classList.add('recyclebin-hover');  // Add hover effect
+            });
+
+
+            recycleBin.addEventListener('dragleave', () => {
+                recycleBin.classList.remove('recyclebin-hover');  // Remove hover effect when dragging leaves
+            });
+
+
+            recycleBin.addEventListener('drop', (e) => {
+                e.preventDefault();  // Prevent default drop behavior
+                const folderId = e.dataTransfer.getData('text');  // Get the folder ID
+                const folder = document.getElementById(folderId);  // Find the folder element by ID
+                folder.remove();  // Remove the folder from the DOM
+                recycleBin.classList.remove('recyclebin-hover');  // Remove the hover effect from the recycle bin
+            });
+        </script>
+    </body>
+</html>
+
