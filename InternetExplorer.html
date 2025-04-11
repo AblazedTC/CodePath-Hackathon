@@ -3,7 +3,6 @@
   <head>
     <title></title>
     <meta charset="UTF-8" />
-    <script src="InternetExplorerScrips.js"></script>
 
     <!-- Windows XP Theme (include only one theme at a time) -->
     <link rel="stylesheet" href="https://unpkg.com/xp.css" />
@@ -50,10 +49,24 @@
     <div id="search" class="container">
         <from action="">
             <input id="searchbar" type:"text" placeholder="search anything" name="q">
-            <button>Search</button>
-            <button>I'm Feeling Lucky</button>
+            <button id="soundBtn">Search</button>
+            <button class="soundBtn">I'm Feeling Lucky</button>
         </from>
     </div>
+
+    <!--Audio Element-->
+    <audio id="clickSound" src="ErrorSFX.mp3" preload="auto"></audio>
+
+    <script>
+      const button = document.getElementById('soundBtn');
+      const sound = document.getElementById('clickSound');
+  
+      button.addEventListener('click', () => {
+        sound.currentTime = 0; // Rewind to start
+        sound.play();
+      });
+    </script>
+
     <footer id="footer">
       <img src="win-bottom.png" alt="">
     </footer> 
