@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="Calc.css">
+</head>
+<body>
+
+<div id="calculator">
+    <input id="display" readonly>
+    <div id="keys">
+        <!-- Row 1 - Backspace, CE, C -->
+        <div class="row">
+            <button class="wide-button red" onclick="backspace()">←</button>
+            <button class="wide-button red" onclick="clearEntry()">CE</button>
+            <button class="wide-button red" onclick="clearDisplay()">C</button>
+        </div>
+
+        <!-- Row 2 - MC, 7, 8, 9, /, √ -->
+        <div class="row">
+            <button class="memory-button red" onclick="memoryClear()">MC</button>
+            <button class="blue" onclick="appendToDisplay('7')">7</button>
+            <button class="blue" onclick="appendToDisplay('8')">8</button>
+            <button class="blue" onclick="appendToDisplay('9')">9</button>
+            <button class="operator red" onclick="appendToDisplay('/')">/</button>
+            <button class="blue" onclick="squareRoot()">√</button>
+        </div>
+
+        <!-- Row 3 - MR, 4, 5, 6, *, % -->
+        <div class="row">
+            <button class="memory-button red" onclick="memoryRecall()">MR</button>
+            <button class="blue" onclick="appendToDisplay('4')">4</button>
+            <button class="blue" onclick="appendToDisplay('5')">5</button>
+            <button class="blue" onclick="appendToDisplay('6')">6</button>
+            <button class="operator red" onclick="appendToDisplay('*')">*</button>
+            <button class="blue" onclick="percent()">%</button>
+        </div>
+
+        <!-- Row 4 - MS, 1, 2, 3, -, 1/x -->
+        <div class="row">
+            <button class="memory-button red" onclick="memorySave()">MS</button>
+            <button class="blue" onclick="appendToDisplay('1')">1</button>
+            <button class="blue" onclick="appendToDisplay('2')">2</button>
+            <button class="blue" onclick="appendToDisplay('3')">3</button>
+            <button class="operator red" onclick="appendToDisplay('-')">-</button>
+            <button class="blue" onclick="reciprocal()">1/x</button>
+        </div>
+
+        <!-- Row 5 - M+, 0, +/-, ., +, = -->
+        <div class="row">
+            <button class="memory-button red" onclick="memoryAdd()">M+</button>
+            <button class="blue" onclick="appendToDisplay('0')">0</button>
+            <button class="blue" onclick="appendToDisplay('+/-')">+/-</button>
+            <button class="blue" onclick="appendToDisplay('.')">.</button>
+            <button class="operator red" onclick="appendToDisplay('+')">+</button>
+            <button class="operator red" onclick="calculate()">=</button>
+        </div>
+    </div>
+</div>
+
+<script src="Calc.js"></script>
+</body>
+</html>
