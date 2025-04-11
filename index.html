@@ -18,7 +18,43 @@
   <div class="start-menu-win">
     <img src="start-menu.png" alt="">
   </div>
-  
+
+  <div class="desktop">
+    <a href="https://example.com" class="icon" onclick="selectIcon(this)">
+      <img src="https://icons.iconarchive.com/icons/dtafalonso/win-8-metro/512/Folder-Documents-icon.png">
+      <div class="icon-text">My Documents</div>
+    </a>
+
+    <a href="https://example.com" class="icon" onclick="selectIcon(this)">
+      <img src="https://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Apps-Google-Chrome-Metro-icon.png">
+      <div class="icon-text">Internet Explorer</div>
+    </a>
+
+    <a href="https://example.com" class="icon" onclick="selectIcon(this)">
+      <img src="https://icons.iconarchive.com/icons/dtafalonso/win-8-metro/512/Recycle-Bin-Full-icon.png">
+      <div class="icon-text">Recycle Bin</div>
+    </a>
+
+    <a href="https://example.com" class="icon" onclick="selectIcon(this)">
+      <img src="https://icons.iconarchive.com/icons/dtafalonso/win-8-metro/512/Recycle-Bin-Full-icon.png">
+      <div class="icon-text">Calculator</div>
+    </a>
+
+    <a href="https://example.com" class="icon" onclick="selectIcon(this)">
+      <img src="https://icons.iconarchive.com/icons/dtafalonso/win-8-metro/512/Recycle-Bin-Full-icon.png">
+      <div class="icon-text">NotePad</div>
+    </a>
+  </div>
+
+  <script>
+    // Simple click-to-select effect (like XP highlight)
+    function selectIcon(element) {
+      const icons = document.querySelectorAll('.icon');
+      icons.forEach(icon => icon.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+  </script>
+
   <script>
     $(".error").draggable();
     var error = '<div class="error">' + $('.error').html() + '</div>',
