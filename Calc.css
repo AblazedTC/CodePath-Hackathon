@@ -1,12 +1,12 @@
 /* General Styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #A5D8FF; /* Light blue background */
+    background-color: #ececec; /* Light blue background */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    margin: 0; /* Ensure no unwanted margins */
 }
 
 #calculator {
@@ -16,10 +16,11 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     width: 400px; /* Adjust width */
     text-align: center;
+    position: relative;
 }
 
 #display {
-    width: 100%;
+    width: 94.5%;
     height: 40px;
     font-size: 2em;
     text-align: right;
@@ -31,11 +32,27 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+#display {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2rem;
+    background-color: #e0e0e0;
+    border: inset 2px #aaa;
+    color: #222;
+  }
+
 /* Key Layout */
 #keys {
     display: flex;
     flex-direction: column;
     gap: 10px; /* Gap between rows */
+}
+
+#keys .row:first-child button:nth-child(2),
+#keys .row:first-child button:nth-child(3),
+#keys .row:first-child button:nth-child(4) {
+    width: 110px;  /* Adjust the width of the buttons */
+    height: 80px; /* Adjust the height of the buttons */
+    font-size: 1.5em; /* Adjust the font size if needed */
 }
 
 .row {
@@ -55,6 +72,20 @@ button {
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+.mode-button {
+    width: 100px;  /* Adjust width */
+    height: 70px;  /* Adjust height */
+    font-size: 1.2em;  /* Adjust font size */
+    padding: 0.5em 1em;  /* Padding to adjust the internal space */
+    background-color: #333;  /* Example background color */
+    color: #000000;  /* Text color */
+    border: 2px solid #aaa;  /* Border color */
+    border-radius: 5px;  /* Rounded corners */
+    cursor: pointer;  /* Pointer cursor on hover */
+    transition: background-color 0.3s;  /* Smooth transition */
+}
+
 
 /* Hover and Active Effects */
 button:hover {
@@ -111,3 +142,116 @@ button.operator {
 button.operator:hover {
     color: red !important;
 }
+
+body.modern-mode {
+    background-color: #f5f5f5;
+    color: #000;
+}
+
+body.retro-mode {
+    background-color: #1e1e1e;
+    color: #333;
+    font-family: 'Courier New', monospace;
+}
+
+body.retro-mode .title-bar-xp {
+    background: linear-gradient(to bottom, #454545, #1a1a1a); 
+    color: rgb(125, 175, 126); 
+    border: 2px solid #444;
+}
+
+.retro-mode #calculator {
+    background-color: #111;
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.retro-mode button {
+    background-color: #2323239f ;
+    color: rgba(212, 212, 212, 0.897);
+    border: box-shadow:#0 0 5px #0f0;
+}
+
+  
+.title-bar-xp {
+    background: linear-gradient(to bottom, #3a6ea5, #1c4e80);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4em 0.8em;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 1rem;
+    border: 2px solid #2a4b7c;
+    border-radius: 6px 6px 0 0;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+}
+  .title-text-xp {
+    font-weight: bold;
+  }
+  .title-controls-xp .close-xp {
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 1px 1px 0 #333;
+  }
+  .mode-button {
+    background-color: #ddd;
+    border: 2px solid #aaa;
+    border-radius: 5px;
+    padding: 0.4em 0.8em;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 0.5em;
+  }
+    
+  /* === Retro/Dark Mode Custom Colors === */
+
+/* Numbers (Blue) */
+body.retro-mode button.blue {
+    color: #4ecfff;
+    text-shadow: 0 0 3px #4ecfff;
+}
+
+/* Operators (Red) */
+body.retro-mode button.operator {
+    color: #ff4d4d;
+    text-shadow: 0 0 3px #ff4d4d;
+}
+
+/* Memory / Extra (Yellow) */
+body.retro-mode button.memory-button {
+    color: #ffff66;
+    text-shadow: 0 0 3px #ffff66;
+}
+
+/* Hover effect (Retro/Dark mode) */
+body.retro-mode button:hover {
+    background-color: #3a3a3a;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+/* Active effect (Retro/Dark mode) */
+body.retro-mode button:active {
+    background-color: #2c2c2c;
+    box-shadow: inset 0 3px 5px rgba(0, 255, 0, 0.2);
+}
+
+.title-left {
+    display: flex;
+    align-items: center;
+    gap: 0.4em; /* Space between icon and text */
+  }
+
+.calc-icon {
+    width: 50px;
+    height: 50px;
+    margin-left: -20px;
+  }
+  

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+
+    <!-- Windows XP Theme (include only one theme at a time) -->
+    <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+    <link rel="stylesheet" href="InternetExplorerStyle.css">
+  </head>
+
+  <body>
+        <div class="window">
+            <div class="title-bar">
+              <div class="title-bar-text">
+                Google - Microsoft's Internet Explorer
+              </div>
+      
+              <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <section class="field-row">
+                <div id="bar-div">
+                  <ul class="menu-bar">
+                      <li>File</li>
+                      <li>Edit</li>
+                      <li>View</li>
+                      <li>Favorites</li>
+                      <li>Tools</li>
+                      <li>Help</li>
+                  </ul>
+                </div>
+                <div style="margin-left: auto;">
+                  <img  id="xpicon" src="windows-xp-icon.png" alt="xp-icon">
+                </div>
+              </section>
+              <div id = "Address-Search" class="field-row">
+                <label for="text21">Address</label>
+                <input id="text21" type="text" placeholder="Search Google or type a URL"/>
+              </div>
+            </div>
+          </div>
+    <img id="googlelogo" src="pngimg.com - google_PNG102343.png" alt="Google Logo">
+    
+    <div id="search" class="container">
+        <from action="">
+            <input id="searchbar" type:"text" placeholder="search anything" name="q">
+            <button id="soundBtn">Search</button>
+            <button class="soundBtn">I'm Feeling Lucky</button>
+        </from>
+    </div>
+
+    <!--Audio Element-->
+    <audio id="clickSound" src="ErrorSFX.mp3" preload="auto"></audio>
+
+    <script>
+      const button = document.getElementById('soundBtn');
+      const sound = document.getElementById('clickSound');
+  
+      button.addEventListener('click', () => {
+        sound.currentTime = 0; // Rewind to start
+        sound.play();
+      });
+    </script>
+
+    <footer id="footer">
+      <img src="win-bottom.png" alt="">
+    </footer> 
+  </body>
+</html>

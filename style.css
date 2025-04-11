@@ -98,3 +98,46 @@ button.ok {
 .start-menu-win.active-menu {
   opacity: 1;
 }
+
+.desktop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 40px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  cursor: pointer;
+  color: white;
+  text-shadow: 1px 1px #000;
+}
+
+.icon img {
+  width: 48px;
+  height: 48px;
+}
+
+.icon-text {
+  margin-top: 6px;
+  font-size: 13px;
+  text-align: center;
+  background-color: transparent;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: background-color 0.2s;
+}
+
+.icon:hover .icon-text,
+.icon.selected .icon-text {
+  background-color: rgba(0, 0, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

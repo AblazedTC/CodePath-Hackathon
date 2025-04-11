@@ -4,19 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Calc.css">
 </head>
-<body>
-
-<div id="calculator">
-    <input id="display" readonly>
-    <div id="keys">
-        <!-- Row 1 - Backspace, CE, C -->
-        <div class="row">
-            <button class="wide-button red" onclick="backspace()">←</button>
-            <button class="wide-button red" onclick="clearEntry()">CE</button>
-            <button class="wide-button red" onclick="clearDisplay()">C</button>
+<body> 
+    <div id="calculator">
+    <div class="title-bar-xp">
+        <div class="title-left">
+            <img src="logo.png" alt="Calc Icon" class="calc-icon" />
+        <span class="title-text-xp">Calculator</span>
         </div>
+        <div class="title-controls-xp">
+            <button class="close-xp" aria-label="Close" onclick="document.getElementById('calculator').style.display = 'none'">X</button>
+        </div>
+    </div>
+   
+        <input id="display" readonly>
+        <div id="keys">
+            <!-- Calculator rows and buttons -->
+            <div class="row">
+                <button class="mode-button" onclick="toggleMode()">Retro Mode</button>
+                <button class="wide-button red" onclick="backspace()">←</button>
+                <button class="wide-button red" onclick="clearEntry()">CE</button>
+                <button class="wide-button red" onclick="clearDisplay()">C</button>
+            </div>
 
         <!-- Row 2 - MC, 7, 8, 9, /, √ -->
         <div class="row">
@@ -52,14 +63,13 @@
         <div class="row">
             <button class="memory-button red" onclick="memoryAdd()">M+</button>
             <button class="blue" onclick="appendToDisplay('0')">0</button>
-            <button class="blue" onclick="appendToDisplay('+/-')">+/-</button>
+            <button class="blue" onclick="toggleSign()">+/-</button>
             <button class="blue" onclick="appendToDisplay('.')">.</button>
             <button class="operator red" onclick="appendToDisplay('+')">+</button>
             <button class="operator red" onclick="calculate()">=</button>
         </div>
     </div>
 </div>
-
 <script src="Calc.js"></script>
 </body>
 </html>
