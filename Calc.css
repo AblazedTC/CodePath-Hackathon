@@ -230,7 +230,7 @@ body.retro-mode button.memory-button {
     text-shadow: 0 0 3px #ffff66;
 }
 
-/* Hover effect (Retro/Dark mode) */
+/* Hover effect (Retro/Dark mode) */git
 body.retro-mode button:hover {
     background-color: #3a3a3a;
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
