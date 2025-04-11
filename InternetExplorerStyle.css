@@ -1,0 +1,42 @@
+
+#xpicon {
+    max-width: 30px; /* you can use % */
+    max-height: 30px;
+}
+.menu-bar {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #ece9d8;
+    gap: 20px;
+  }
+  
+  .menu-bar li {
+    padding: 2px 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .menu-bar li:hover {
+    background-color: #ddd;
+    border-radius: 4px;
+  }
+
+  #bar-div {
+
+  }
+
+  .window {
+    margin: 0px;
+    width : 100vw;
+    transform: translateX(-8px) translateY(-8px);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    
+  }
+
+  #googlelogo {
+    width: 300px;
+    height: auto;
+  }

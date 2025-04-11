@@ -6,10 +6,11 @@
 
     <!-- Windows XP Theme (include only one theme at a time) -->
     <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+    <link rel="stylesheet" href="InternetExplorerStyle.css">
   </head>
 
   <body>
-        <div class="window" style="margin: 0px; width: 250px">
+        <div class="window">
             <div class="title-bar">
               <div class="title-bar-text">
                 Google - Microsoft's Internet Explorer
@@ -23,23 +24,27 @@
             </div>
             <div class="window-body">
               <section class="field-row">
-                <ul id="NavList">
-                    <li>File</li>
-                    <li>Edit</li>
-                    <li>View</li>
-                    <li>Favorites</li>
-                    <li>Tools</li>
-                    <li>Help</li>
-                </ul>
-                <img src="windows-xp-icon.png" alt="xp-icon">
+                <div id="bar-div">
+                  <ul class="menu-bar">
+                      <li>File</li>
+                      <li>Edit</li>
+                      <li>View</li>
+                      <li>Favorites</li>
+                      <li>Tools</li>
+                      <li>Help</li>
+                  </ul>
+                </div>
+                <div style="margin-left: auto;">
+                  <img  id="xpicon" src="windows-xp-icon.png" alt="xp-icon">
+                </div>
               </section>
               <div class="field-row">
-                <label for="text21">Occupation</label>
+                <label for="text21">Address</label>
                 <input id="text21" type="text" />
               </div>
             </div>
           </div>
-    <img src="pngimg.com - google_PNG102343.png" alt="Google Logo">
+    <img id="googlelogo" src="pngimg.com - google_PNG102343.png" alt="Google Logo">
     
     <div id="search" class="container">
         <from action="">
