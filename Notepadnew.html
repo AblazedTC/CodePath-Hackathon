@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Notepad with Keyboard & Emojis</title>
+ <style>
+   body {
+     margin: 0;
+     padding: 0;
+     font-family: monospace;
+     transition: background-color 0.3s, color 0.3s;
+   }
+
+
+   /* Light Mode */
+   body.light-mode {
+     background-color: #fefefe;
+     color: #333;
+   }
+
+
+   /* Dark Mode */
+   body.dark-mode {
+     background-color: #121212;
+     color: #fefefe;
+   }
+
+
+   textarea {
+     width: 100vw;
+     height: 60vh;
+     border: none;
+     padding: 20px;
+     box-sizing: border-box;
+     font-size: 16px;
+     background: #fffdf8;
+     color: #333;
+     resize: none;
+     outline: none;
+     transition: background 0.3s, color 0.3s;
+   }
+
+
+   .textarea.dark-mode {
+     background: #333;
+     color: #fefefe;
+   }
+
+
+   .keyboard {
+     display: grid;
+     grid-template-columns: repeat(10, 1fr);
+     gap: 5px;
+     padding: 10px;
+     background: #f0f0f0;
+   }
+
+
+   .key {
+     padding: 10px;
+     background: #e0e0e0;
+     border: 1px solid #ccc;
+     cursor: pointer;
+     text-align: center;
+     font-size: 16px;
+     position: relative;
+   }
+
+
+   .key:active {
+     background: #c0c0c0;
+   }
+
+
+   /* Braille letters above each key */
+   .braille {
+     position: absolute;
+     top: -20px;
+     left: 50%;
+     transform: translateX(-50%);
+     font-size: 14px;
+     color: #888;
+   }
+
+
+   .emoji {
+     font-size: 20px;
+   }
+
+
+   /* Emoji selection modal */
+   .emoji-modal {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background-color: rgba(0, 0, 0, 0.5);
+     align-items: center;
+     justify-content: center;
+   }
+
+
+   .emoji-modal-content {
+     background: #fff;
+     padding: 20px;
+     border-radius: 5px;
+     display: grid;
+     grid-template-columns: repeat(6, 1fr);
+     gap: 10px;
+   }
+
+
+   .emoji-item {
+     font-size: 30px;
+     cursor: pointer;
+     text-align: center;
+   }
+
+
+   .emoji-item:hover {
+     background-color: #f0f0f0;
+     border-radius: 5px;
+   }
+
+
+   .close-modal {
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     font-size: 20px;
+     cursor: pointer;
+     color: #fff;
+     background-color: #ff0000;
+     padding: 5px;
+     border-radius: 50%;
+   }
+
+
+   .mode-button {
+     position: fixed;
+     top: 20px;
+     right: 20px;
+     padding: 10px;
+     background-color: #4CAF50;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 16px;
+     transition: background-color 0.3s;
+   }
+
+
+   .mode-button:hover {
+     background-color: #45a049;
+   }
+ </style>
+</head>
+<body class="light-mode">
+
+
+ <textarea id="notepad" class="textarea" placeholder="..."></textarea>
+
+
+ <!-- Light/Dark Mode Toggle Button -->
+ <button class="mode-button" id="modeToggle">Switch to Dark Mode</button>
+
+
+ <!-- Virtual Keyboard -->
+ <div class="keyboard">
+   <button class="key">
+     <div class="braille">⠠⠟</div> Q
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠺</div> W
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠑</div> E
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠗</div> R
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠞</div> T
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠽</div> Y
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠥</div> U
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠊</div> I
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠕</div> O
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠏</div> P
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠁</div> A
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠎</div> S
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠙</div> D
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠋</div> F
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠛</div> G
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠓</div> H
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠚</div> J
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠅</div> K
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠇</div> L
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠣</div> ;
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠵</div> Z
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠭</div> X
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠉</div> C
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠧</div> V
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠃</div> B
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠍</div> M
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠨</div> ,
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠎</div> .
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠯</div> /
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠰</div> Space
+   </button>
+   <button class="key">
+     <div class="braille">⠠⠍</div> Backspace
+   </button>
+
+
+   <!-- Emoji Button -->
+   <button class="key emoji" id="emojiButton">🙂</button>
+ </div>
+
+
+ <!-- Emoji Modal -->
+ <div class="emoji-modal" id="emojiModal">
+   <div class="emoji-modal-content">
+     <!-- Emoji Items -->
+     <div class="emoji-item">😀</div>
+     <div class="emoji-item">😂</div>
+     <div class="emoji-item">😎</div>
+     <div class="emoji-item">❤️</div>
+     <div class="emoji-item">👍</div>
+     <div class="emoji-item">🙏</div>
+     <div class="emoji-item">🎉</div>
+     <div class="emoji-item">🌍</div>
+     <div class="emoji-item">🚀</div>
+     <div class="emoji-item">💻</div>
+     <div class="emoji-item">🌈</div>
+     <div class="emoji-item">🔥</div>
+     <div class="emoji-item">🥳</div>
+     <div class="emoji-item">💡</div>
+     <div class="emoji-item">🍕</div>
+     <div class="emoji-item">🍦</div>
+   </div>
+   <span class="close-modal" id="closeModal">&times;</span>
+ </div>
+
+
+ <script>
+   const textarea = document.getElementById("notepad");
+   const emojiButton = document.getElementById("emojiButton");
+   const emojiModal = document.getElementById("emojiModal");
+   const closeModal = document.getElementById("closeModal");
+   const emojiItems = document.querySelectorAll(".emoji-item");
+   const modeButton = document.getElementById("modeToggle");
+
+
+   // Define a list of common words for auto-correction
+   const wordList = {
+     "gro": "grocery",
+     "wr": "write",
+     "recieve": "receive",
+     "teh": "the",
+     "becuase": "because",
+     "definately": "definitely",
+     "adress": "address",
+     "seperated": "separated"
+     // Add more as needed
+   };
+
+
+   // Function to correct the last word typed
+   function autoCorrect() {
+     const words = textarea.value.split(' ');
+     const lastWord = words[words.length - 1];
+
+
+     if (wordList[lastWord]) {
+       words[words.length - 1] = wordList[lastWord];
+       textarea.value = words.join(' ') + ' '; // Rejoin the words
+       textarea.setSelectionRange(textarea.value.length, textarea.value.length); // Move cursor to end
+     }
+   }
+
+
+   // Monitor changes in textarea for auto-correction
+   textarea.addEventListener("input", autoCorrect);
+
+
+   // Load mode preference from localStorage
+   const currentMode = localStorage.getItem("mode") || "light";
+   if (currentMode === "dark") {
+     document.body.classList.add("dark-mode");
+     document.body.classList.remove("light-mode");
+     textarea.classList.add("dark-mode");
+     modeButton.textContent = "Switch to Light Mode";
+   } else {
+     document.body.classList.add("light-mode");
+     document.body.classList.remove("dark-mode");
+     textarea.classList.remove("dark-mode");
+     modeButton.textContent = "Switch to Dark Mode";
+   }
+
+
+   // Save mode preference to localStorage and toggle mode
+   modeButton.addEventListener("click", () => {
+     const currentMode = document.body.classList.contains("light-mode") ? "light" : "dark";
+     if (currentMode === "light") {
+       document.body.classList.add("dark-mode");
+       document.body.classList.remove("light-mode");
+       textarea.classList.add("dark-mode");
+       textarea.classList.remove("light-mode");
+       localStorage.setItem("mode", "dark");
+       modeButton.textContent = "Switch to Light Mode";
+     } else {
+       document.body.classList.add("light-mode");
+       document.body.classList.remove("dark-mode");
+       textarea.classList.remove("dark-mode");
+       localStorage.setItem("mode", "light");
+       modeButton.textContent = "Switch to Dark Mode";
+     }
+   });
+
+
+   // Save content locally
+   textarea.value = localStorage.getItem("notepadContent") || "";
+
+
+   textarea.addEventListener("input", () => {
+     localStorage.setItem("notepadContent", textarea.value);
+   });
+
+
+   // Show emoji modal when emoji button is clicked
+   emojiButton.addEventListener("click", () => {
+     emojiModal.style.display = "flex";
+   });
+
+
+   // Hide emoji modal when close button is clicked
+   closeModal.addEventListener("click", () => {
+     emojiModal.style.display = "none";
+   });
+
+
+   // Insert selected emoji into textarea
+   emojiItems.forEach(emoji => {
+     emoji.addEventListener("click", () => {
+       textarea.value += emoji.textContent;
+       textarea.focus();
+       emojiModal.style.display = "none";  // Close the modal after selection
+     });
+   });
+
+
+   // Close emoji modal when clicking outside
+   window.addEventListener("click", (event) => {
+     if (event.target === emojiModal) {
+       emojiModal.style.display = "none";
+     }
+   });
+ </script>
+
+
+</body>
+</html>
+
